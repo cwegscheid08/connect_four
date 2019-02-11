@@ -10,15 +10,14 @@ This lesson is to focus on practicing writing test for code, using the Test Driv
 
 ### GAME
 
-House's the rules for the game, calls players to make moves, checks to see if either player has won. 
+House's the rules for the game, calls players to make moves, checks to see if either player has won. To win, either player must get at least four of their symbols in a row in either horizontal, veritcal, or diagonal positions.
+
+Game will have to initialize with player_1 and player_2 as arguments. If player_2 is left nil, it will auto load with a computer player randomly generating guesses. 
 
 ### BOARD
 
 Will be a 7x6 grid housing cells set equal to 'nil', will place players icons in correspoding cells based on their input
 
-### PLAYERS
-
-Sets parent methods for both human and comuter players.
 
 ### COMPUTER
 
