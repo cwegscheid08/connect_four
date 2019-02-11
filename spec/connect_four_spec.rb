@@ -1,6 +1,5 @@
 require './lib/game.rb'
 require './lib/board.rb'
-require './lib/players.rb'
 require './lib/human.rb'
 require './lib/computer.rb'
 
@@ -10,24 +9,20 @@ RSpec.describe Game do
 		@game = Game.new("Chris")
 	end
 
-		describe "#round" do 
-			it "return player_1.guess." do 
-				# @game = Game.new
-				@game.p1_turn = false
-				expect(@game.round).to eql(@player_1.guess)
-		 	end
-
-		 	it "returns player_2.guess." do
-		 		@game.p1_turn = true
-		 		expect(@game.round).to eql(@player_2.guess)
-		 	end
-		end
-
 		describe "#who_is_playing" do
 			it "returns which player who's turn it is." do
-				# @game = Game.new("Chris")
-				expect(@game.who_is_playing).to eql(@player_1)
+				@game.p1_turn = true
+				expect(@game.who_is_playing.class).to eql(Human)
 			end
+
+			it "return player_2 when p1_turn is false." do
+				@game.p1_turn = false
+				expect(@game.who_is_playing.class).to eql(Computer)
+			end
+		end
+
+		describe "#round" do
+
 		end
 
 		# describe "#game_over?" do
@@ -86,14 +81,6 @@ end
 # 	end
 # end
 
-# RSpec.describe Players do
-# 	describe "#guess" do
-# 		it "returns an integer from 1-7 based on user inputs." do
-# 			players = Players.new
-# 			expect(players.player_guess).to eql(5)
-# 		end
-# 	end
-# end
 
 # RSpec.describe Human do
 # 	describe "#guess" do

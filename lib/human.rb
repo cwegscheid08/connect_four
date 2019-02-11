@@ -1,18 +1,19 @@
-class Human < Players
+class Human
 	attr_accessor :name, :game_piece
 
 	def initialize(name, game_piece = nil)
-		super
+		@name = name
+		game_piece.nil? ? @game_piece = get_game_piece : @game_piece = game_piece
 	end
 
 	def guess
 		puts "Where do you want to drop you piece?"
-		gets.chomp.to_i
+		return gets.chomp.to_i
 	end
 
 	def get_game_piece
 		puts "What is your game piece?"
-		@game_piece.gets.chomp
+		@game_piece = gets.chomp
 	end
 
 end

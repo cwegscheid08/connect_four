@@ -1,8 +1,8 @@
-class Computer < Players
+class Computer
 	attr_accessor :name, :game_piece
 
-	def initialize(name, game_piece)
-		super
+	def initialize(name)
+		@name = name
 		@game_piece = "COMP"
 	end
 
