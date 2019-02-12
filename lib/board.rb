@@ -30,26 +30,14 @@ class Board
 	end
 
 	def display
-		@board.each_key { |key| print "#{key.upcase}  "}
+		@board.each_key { |key| print "#{key.upcase}   "}
 		puts
-
-		7.times do |x|
-			# x+=1
-			# print "BOARD:#{@board["column_#{x}"].pop} X:#{x}\n"
-			# @board["column_#{x}"]
-			# print "#{@board.values.reverse[x].invert.values} \n"
+		6.times do |x|
 			@board.each_value do |value|
-				# print @board[value][x].invert.values
-				# puts "VALUE:#{value} X:#{x}"
-				print "#{value.keys[6-x]}   "
+				print "[   #{value.values[5-x].nil? ? " " : value.values[5-x]}  ]   "
 			end
 			puts
 		end
-
-		# @board.each_key do |key|
-
-		# end
-		
 	end
 
 	def fill
@@ -69,7 +57,7 @@ class Board
 		x = 0
 		y = 0
 		7.times do
-			7.times do
+			6.times do
 				cell[[x,y]] = nil
 				y+=1
 			end

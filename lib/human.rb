@@ -12,8 +12,7 @@ class Human
 	end
 
 	def get_game_piece
-		puts "What is your game piece?"
-		@game_piece = gets.chomp
+		@game_piece = @name[0].upcase
 	end
 
 end

@@ -16,7 +16,7 @@ class Game
 	def round
 		@p1_turn ? @p1_turn = false : @p1_turn = true
 		@board.place_piece(who_is_playing, who_is_playing.guess)
-		# @board.display
+		@board.display
 	end
 
 	def game_over?
