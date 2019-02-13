@@ -18,7 +18,53 @@ class Board
 
 	def four_in_a_row?
 
+		
+
 	end
+
+
+	# def four_in_a_row?
+	# 	moves = [[-1,0],[1,0],[0,1],[0,-1],[-1,1],[1,1],[-1,-1],[1,-1]]
+
+	# 	@board.each do |key, value|
+	# 		puts "KEY:#{key} VALUE:#{value}"
+	# 		value.each do |x, y|
+	# 			puts "X:#{x} Y:#{y}"
+	# 			if !y.nil?
+	# 		 		adjacent_cell_search(x, y, moves.pop)
+	# 					return true
+	# 				end
+	# 			end
+	# 		end
+	# 	end
+
+	# 	false
+	# end
+
+	# def adjacent_cell_search(cell, value, move, bank = [])
+	# 	tmp = cell
+
+	# 	3.times do 
+	# 		tmp.map! do |tmp_cell|
+	# 			tmp_cell[0]+=move[0]
+	# 			tmp_cell[1]+=move[1]
+	# 		end
+
+	# 	end
+
+
+
+
+	# 	# THE COMPARISON AREA OF THIS WORKS TO TELL IF THE VALUES OF 
+	# 	# AN ARRAY ARE ALL EQL
+	# 	puts "BANK:#{bank} "
+	# 	if !bank[0].nil? && bank.each { |x| x == value ? true : false }
+	# 		puts "IN " 
+	# 		return true
+	# 	end
+	# 	puts "OUT "
+	# 	false
+	# end
 
 	def full?
 		@board.each_key do |key|

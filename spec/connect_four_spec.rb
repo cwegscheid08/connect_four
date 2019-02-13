@@ -23,32 +23,32 @@ RSpec.describe Game do
 
 
 
-	# describe "#game_over?" do
-	# 	it "contiues play if no one has won." do
-	# 		# @game = Game.new("Chris")
-	# 		board.four_in_a_row? = true
-	# 		expect(@game.game_over?).to eql(true)
-	# 	end
+	describe "#game_over?" do
+		it "contiues play if no one has won." do
+			# @game = Game.new("Chris")
+			board.four_in_a_row? = true
+			expect(@game.game_over?).to eql(true)
+		end
 
-	# 	it "contiues to play the game if no one has won." do
-	# 		# @game = Game.new
-	# 		board.four_in_a_row? = false
-	# 		expect(@game.game_over?).to eql(round(who_is_playing))
-	# 	end
-	# end
+		it "contiues to play the game if no one has won." do
+			# @game = Game.new
+			board.four_in_a_row? = false
+			expect(@game.game_over?).to eql(round(who_is_playing))
+		end
+	end
 
-	# describe "#player_wins" do
-	# 	it "returns a string stating which player has won the game." do
-	# 		# @game = Game.new("Chris")
-	# 		board.four_in_a_row? = true
-	# 		expect(@game.game_over?).to eql("CHRIS has won!")
-	# 	end
+	describe "#player_wins" do
+		it "returns a string stating which player has won the game." do
+			# @game = Game.new("Chris")
+			board.four_in_a_row? = true
+			expect(@game.game_over?).to eql("CHRIS has won!")
+		end
 
-	# 	it "returns a string stating the player has lost if the computer wins." do
-	# 		# @game = Game.new("Chris")
-	# 		expect(@game.game_over?).to eql("You lose.")
-	# 	end
-	# end
+		it "returns a string stating the player has lost if the computer wins." do
+			# @game = Game.new("Chris")
+			expect(@game.game_over?).to eql("You lose.")
+		end
+	end
 end
 
 RSpec.describe Board do

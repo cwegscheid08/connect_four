@@ -24,13 +24,14 @@ class Game
 	end
 
 	def player_wins
-		puts "#{who_is_playing.upcase} WINS!!!"
+		puts "#{who_is_playing.name.upcase} WINS!!!"
 	end
 
 	def start
 		until game_over?
 			round
 		end
+		player_wins
 	end
 
 	def who_is_playing
