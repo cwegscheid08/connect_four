@@ -24,7 +24,7 @@ class Game
 	end
 
 	def player_wins
-		puts "#{who_is_playing.name.upcase} WINS!!!"
+		return "#{who_is_playing.name.upcase} WINS!!!"
 	end
 
 	def start

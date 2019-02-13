@@ -18,7 +18,7 @@ class Board
 
 	def four_in_a_row?
 
-		
+
 
 	end
 
@@ -89,7 +89,7 @@ class Board
 	def fill
 		@board.each_key do |key|
 			@board[key].each_key do |cell|
-				@board[key][cell] = "CHRIS"
+				@board[key][cell] = "C"
 			end
 		end
 	end

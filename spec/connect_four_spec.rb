@@ -24,29 +24,25 @@ RSpec.describe Game do
 
 
 	describe "#game_over?" do
-		it "contiues play if no one has won." do
-			# @game = Game.new("Chris")
-			board.four_in_a_row? = true
-			expect(@game.game_over?).to eql(true)
+		it "returns false if no one has won." do
+			expect(@game.game_over?).to eql(false)
 		end
 
-		it "contiues to play the game if no one has won." do
-			# @game = Game.new
-			board.four_in_a_row? = false
-			expect(@game.game_over?).to eql(round(who_is_playing))
+		it "returns true if the game is over." do
+			@game.board.fill
+			expect(@game.game_over?).to eql(true)
 		end
 	end
 
+
+
+
+
+
 	describe "#player_wins" do
 		it "returns a string stating which player has won the game." do
-			# @game = Game.new("Chris")
-			board.four_in_a_row? = true
-			expect(@game.game_over?).to eql("CHRIS has won!")
-		end
-
-		it "returns a string stating the player has lost if the computer wins." do
-			# @game = Game.new("Chris")
-			expect(@game.game_over?).to eql("You lose.")
+			@game.p1_turn = true
+			expect(@game.player_wins).to eql("CHRIS WINS!!!")
 		end
 	end
 end
@@ -81,39 +77,59 @@ RSpec.describe Board do
 			expect(@board.place_piece(player_1, 6)).to eql([5,1])
 		end
 	end
+
+	describe "#four_in_a_row?" do
+		it "is falsy if there aren't four of the same values in a row." do
+			expect(@board.four_in_a_row?).to eql(false)
+		end
+
+		it "is truthy if there are four of the same values in a row." do
+			@board.fill
+			expect(@board.four_in_a_row?).to eql(true)
+		end
+	end
+
 end
 
 
-# RSpec.describe Human do
-# 	describe "#guess" do
-# 		it "returns an integer from 1-7 based on user inputs." do
-# 			human = Human.new
-# 			expect(human.player_guess).to eql(5)
-# 		end
-# 	end
+RSpec.describe Human do
 
-# 	describe "#game_piece" do
-# 		it "returns the player's selected symbol." do
-# 			human = Human.new
-# 			human.game_piece = "C"
-# 			expect(human.game_piece).to eql("C")
-# 		end
-# 	end
-# end
+	before do
+		@human = Human.new("Chris")
+	end
 
-# RSpec.describe Computer do
-# 	describe "#guess" do
-# 		it "returns a random integer from 1-7 based on user inputs." do
-# 			computer = Computer.new
-# 			expect(Computer.player_guess).to eql(5)
-# 		end
-# 	end
 
-# 	describe "#game_piece" do
-# 		it "returns the computer's symbol."
-# 			computer = Computer.new
-# 			computer.game_piece = "Comp"
-# 			expect(Computer.game_piece).to eql("Comp")
-# 		end
-# 	end
-# end
+	describe "#guess" do
+		it "returns an integer from 1-7 based on user inputs." do
+			# human = Human.new
+			expect(@human.guess).to eql(0)
+		end
+	end
+
+	describe "#game_piece" do
+		it "returns the player's selected symbol." do
+			# human = Human.new("Chris")
+			@human.game_piece = "C"
+			expect(@human.game_piece).to eql("C")
+		end
+	end
+end
+
+RSpec.describe Computer do
+
+	before do
+		@computer = Computer.new("computer")
+	end
+
+	describe "#guess" do
+		it "returns a random integer from 1-7 based on user inputs." do
+			expect(@computer.guess <= 7 && @computer.guess >= 1).to eql(true)
+		end
+	end
+
+	describe "#game_piece" do
+		it "returns the computer's symbol." do
+			expect(@computer.game_piece).to eql("X")
+		end
+	end
+end
