@@ -8,7 +8,7 @@ class Game
 
 	def initialize(player_1, player_2 = "computer")
 		@p1_turn = false
-		@player_1 = Human.new(player_1)
+		player_1 == "computer" ? @player_1 = Computer.new(player_1, "O") : @player_1 = Human.new(player_1)
 		player_2 == "computer" ? @player_2 = Computer.new(player_2) : @player_2 = Human.new(player_2)
 		@board = Board.new
 	end
@@ -20,18 +20,23 @@ class Game
 	end
 
 	def game_over?
-		@board.four_in_a_row?
+		@board.four_in_a_row?(who_is_playing)
 	end
 
 	def player_wins
 		return "#{who_is_playing.name.upcase} WINS!!!"
 	end
 
+	def no_more_turns
+		return "THE BOARD IS FULL.\n\nGAME OVER"
+	end
+
 	def start
-		until game_over?
+		until game_over? || @board.full?
 			round
 		end
-		player_wins
+
+		@board.full? ? no_more_turns : player_wins
 	end
 
 	def who_is_playing
