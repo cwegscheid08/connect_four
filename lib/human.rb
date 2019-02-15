@@ -8,7 +8,13 @@ class Human
 
 	def guess
 		puts "Where do you want to drop you piece?"
-		return gets.chomp.to_i
+		num = gets.chomp.to_i
+		if num > 0 && num < 8
+			return num
+		else
+			puts "It has to be between 1 and 7."
+			guess
+		end
 	end
 
 	def get_game_piece

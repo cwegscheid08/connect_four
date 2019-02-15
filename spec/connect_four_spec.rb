@@ -65,6 +65,10 @@ RSpec.describe Board do
 		end
 	end
 
+	describe "#on_board?" do
+		context "it accepts an array of two seperate integers"
+	end
+
 	describe "#place_piece" do
 		it "returns the cell that the current player has put their piece in." do
 			player_1 = Human.new("Chris", "C")
