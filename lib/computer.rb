@@ -8,7 +8,7 @@ class Computer
 
 	def guess
 		puts "\n\nI'M THINKING...\n"
-		# sleep(1)
+		sleep(1)
 		return rand(1..7)
 	end
 end

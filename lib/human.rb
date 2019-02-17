@@ -7,7 +7,7 @@ class Human
 	end
 
 	def guess
-		puts "Where do you want to drop you piece?"
+		puts "#{name.capitalize}, where do you want to drop you piece?"
 		num = gets.chomp.to_i
 		if num > 0 && num < 8
 			return num

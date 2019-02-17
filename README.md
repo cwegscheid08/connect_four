@@ -35,4 +35,4 @@ For testing I will be using RSpec, which has been being taught through previous 
 
 ## RUNNING APPLICATION
 
-This application will have to be ran from the root file.  To set the game up, create a new Game class, which will initialize each of the other classes in the library, and to start playing, call the start method on your Game class.
+This application will have to be ran from the root file.  To set the game up, create a new Game class, which will initialize each of the other classes in the library, and to start playing, call the start method on your Game class. The Game class must be initialized with a player name as an argument, if you pass it two names you will have a game with two player mode started. If only one name is given to it, player_2 will be loaded with computer mechanics. If you start a new game with player_1 name as 'computer', both player_1 and player_2 will be loaded with computer mechanics, so you can start a game that plays itself.  

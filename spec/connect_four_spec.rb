@@ -117,16 +117,8 @@ RSpec.describe Human do
 	end
 
 
-	describe "#guess" do
-		it "returns an integer from 1-7 based on user inputs." do
-			# human = Human.new
-			expect(@human.guess).to eql(0)
-		end
-	end
-
 	describe "#game_piece" do
 		it "returns the player's selected symbol." do
-			# human = Human.new("Chris")
 			@human.game_piece = "C"
 			expect(@human.game_piece).to eql("C")
 		end
