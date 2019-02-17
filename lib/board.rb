@@ -21,13 +21,19 @@ class Board
 		moves = [[-1,0],[1,0],[0,1],[0,-1],[-1,1],[1,1],[-1,-1],[1,-1]]
 
 		@board.each do |key, value|
-			puts "KEY:#{key} VALUE:#{value}"
+			# puts "KEY:#{key} VALUE:#{value}"
 			value.each do |x, y|
-				puts "X:#{x} Y:#{y}"
+				# puts "X:#{x} Y:#{y}"
 				if !y.nil?
-			 		if adjacent_cell_search(x, y, moves.pop)
-						return true
+					moves.each do |move|
+						if adjacent_cell_search(x, y, move) 
+							return true
+						end
 					end
+
+			 	# 	if adjacent_cell_search(x, y, moves.pop)
+					# 	return true
+					# end
 				end
 			end
 		end
@@ -36,14 +42,30 @@ class Board
 	end
 
 	def adjacent_cell_search(cell, value, move, bank = [])
-		# tmp = cell
+		tmp = []
+		bank.push(value)
 
 		3.times do |x|
-			tmp = []
-			tmp.push(cell[0] + move[0])
-			tmp.push(cell[1] + move[1])
-			puts "TMP:#{tmp} ON_BOARD:#{on_board?(tmp)} "
-			on_board?(tmp) ? bank.push(@board["column_#{tmp[0]-1}"][tmp]) : ""
+			if tmp[0].nil?
+				
+				array = []
+				# puts "BANK:#{bank} TMP:#{tmp} ARRAY:#{array} CELL:#{cell} MOVE:#{move}"
+				# print " FIRST\n"
+				array.push(cell[0] + move[0])
+				array.push(cell[1] + move[1])
+				tmp.push(array)
+			else
+				
+				array = []
+				# puts "BANK:#{bank} TMP:#{tmp} ARRAY:#{array} CELL:#{cell} MOVE:#{move}"
+				# print " FOLLOWING\n"
+				array.push(tmp[-1][0] + move[0])
+				array.push(tmp[-1][1] + move[1])
+				tmp.push(array)
+			end
+			# puts "TMP:#{tmp[-1]} ON_BOARD:#{on_board?(tmp[-1])} "
+			# puts on_board?(tmp[-1]) ? "PUSHING:#{bank.push(@board["column_#{tmp[-1][0]+1}"][tmp[-1]])}" : ""
+			on_board?(tmp[-1]) ? bank.push(@board["column_#{tmp[-1][0]+1}"][tmp[-1]]) : ""
 			# bank.push(tmp)
 		end
 
@@ -52,24 +74,19 @@ class Board
 
 		# THE COMPARISON AREA OF THIS WORKS TO TELL IF THE VALUES OF 
 		# AN ARRAY ARE ALL EQL
-		puts "BANK:#{bank} "
-		if !bank[0].nil? && bank.each { |x| x == value ? true : false }
+		# puts "BANK:#{bank} SIZE:#{bank.size} "
+		# if !bank[0].nil? && bank.size == 4 && bank.each { |x| x == value ? (print "TRUE "; true) : (print "FALSE "; return false) }
+		if !bank[0].nil? && bank.size == 4 && bank.each { |x| x == value ? true : (return false) }
 			puts "IN " 
 			return true
 		end
-		puts "OUT "
+		# puts "OUT "
 		return false
 	end
 
 	def on_board?(cell)
-		puts "CELL#{cell}"
-		puts !@board["column_#{cell[0]-1}"].nil?
-		# puts !@board["column_#{cell[0]-1}"][cell].nil?
-		if !@board["column_#{cell[0]-1}"].nil? && !@board["column_#{cell[0]-1}"][cell].nil?
-			return true
-		else
-		 	return false
-		end
+		# puts "CELL:#{cell}"
+		(cell[0] < 7 && cell[1] < 6 && cell[0] >= 0 && cell[1] >= 0) ? true : false
 	end
 
 	def full?
@@ -77,8 +94,8 @@ class Board
 			if @board[key].value?(nil)
 				return false
 			end
-			return true
 		end
+		return true
 	end
 
 	def display

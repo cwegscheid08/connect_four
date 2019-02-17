@@ -21,23 +21,29 @@ RSpec.describe Game do
 		end
 	end
 
-
-
-	describe "#game_over?" do
-		it "returns false if no one has won." do
-			expect(@game.game_over?).to eql(false)
+	context "this is a random game between two computer." do
+		before do 
+			@game = Game.new("computer")
 		end
 
-		it "returns true if the game is over." do
-			@game.board.fill
-			expect(@game.game_over?).to eql(true)
+		describe "#game_over?" do
+			it "returns false if no one has won." do
+				expect(@game.game_over?).to eql(false)
+			end
+
+			it "returns true if the game is over." do
+				@game.start
+				expect(@game.game_over?).to eql(true)
+			end
 		end
 	end
 
-
-
-
-
+	describe "#no_more_turns" do
+		it "ends the game if the board is full." do
+			@game.board.fill
+			expect(@game.no_more_turns).to eql("THE BOARD IS FULL.\n\nGAME OVER")
+		end
+	end
 
 	describe "#player_wins" do
 		it "returns a string stating which player has won the game." do
@@ -66,7 +72,15 @@ RSpec.describe Board do
 	end
 
 	describe "#on_board?" do
-		context "it accepts an array of two seperate integers"
+		context "it accepts an array of two seperate integers" do
+			it "returns true if the cell is on the board." do
+				expect(@board.on_board?([0,0])).to eql(true)
+			end
+
+			it "returns false if the cell is not on the board." do
+				expect(@board.on_board?([-1, 10])).to eql(false)
+			end
+		end
 	end
 
 	describe "#place_piece" do

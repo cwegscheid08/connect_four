@@ -20,7 +20,8 @@ class Game
 	end
 
 	def game_over?
-		@board.four_in_a_row?(who_is_playing)
+		@board.four_in_a_row?
+		# false
 	end
 
 	def player_wins
